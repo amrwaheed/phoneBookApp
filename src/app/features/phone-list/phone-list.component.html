@@ -1,0 +1,38 @@
+<div class="container-fluid mt-5 mb-5">
+    <div class="row">
+        <div class="col-sm-6 col-md-12 p-5">
+  
+          <div class="section-header text-center">
+            <h2 class="title">Users Phone List</h2>
+          </div>
+          
+           
+                <table  datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="border table table-hover table-striped  " >
+                 
+                  <thead>
+                    <tr>
+                      <th >#</th>
+                      <th > Name</th>
+                      <th >Phone Number</th>
+                
+                      <th >actions</th>
+               
+                    </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let item of phones; let i=index" style="color: black;font-weight: bold;">
+                          <th scope="row">{{i+1}}</th>
+                          <td>{{item.name}}</td>
+                          <td>{{item.phoneNumber}}</td>
+                          <td>
+                             
+                              <a class="btn btn-outline-info mr-2 btn-md main-button" routerLink="/edit/{{item._id}}">Edit</a>
+                              <a class="btn btn-outline-danger btn-md main-button"  (click)="deletePhone(item._id,i)">Cancel</a> 
+                          </td>
+                    </tr>
+                  </tbody>
+                  </table>
+          </div>
+  
+      </div>
+  </div>

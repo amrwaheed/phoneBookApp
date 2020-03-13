@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="row">
+        <div class="col-8 offset-3">
+            <legend class="well-legend text-center mt-4">Edit User Details</legend>
+            <p class="alert alert-danger" *ngIf="errorMessage">{{errorMessage}}</p>
+            <form (ngSubmit)="onSubmit()" #form="ngForm" [formGroup]="EditForm" class="border p-5 m-5">
+                <div class="form-group row">
+                    <label for="nameUser" class="col-sm-4 col-form-label">Name</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" formControlName="name" id="nameUser"
+                            [ngClass]="{'border-danger': name.touched && name.invalid,'border-success': name.valid}"
+                            placeholder="Your Name ... ">
+                        <small class="form-text text-muted" *ngIf=" name.touched && name.errors?.required">
+                            must be required
+                        </small>
+                        <small class="form-text text-muted" *ngIf="name.errors?.minlength">
+                            must be rang {{name.errors?.minlength.requiredLength }}
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="phoen" class="col-sm-4 col-form-label">Phone Number</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="phoen" formControlName="phoneNumber"
+                            [ngClass]="{'border-danger': phoneNumber.touched && phoneNumber.invalid,'border-success': phoneNumber.valid}"
+                            placeholder="Your Phone Number ... ">
+                        <small class="form-text text-muted" *ngIf="phoneNumber.touched && phoneNumber.errors?.required">
+                            must be required
+                        </small>
+                        <small class="form-text text-muted" *ngIf="phoneNumber.errors?.minlength">
+                            must be rang {{phoneNumber.errors?.minlength.requiredLength }} digits
+                        </small>
+                    </div>
+                </div>
+                <div class="col-12  text-center">
+                    <input type="submit" value="Edit Record" class="btn btn-primary " [disabled]="isValid!==true">
+                </div>
+            </form>
+
+            <p class="alert alert-danger" *ngIf="errroMessage">{{errroMessage}}</p>
+        </div>
+    </div>
+</div>
