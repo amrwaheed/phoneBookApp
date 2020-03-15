@@ -39,12 +39,17 @@ export class PhoneAddComponent implements OnInit {
   }
 
   onSubmit() {
-    this.phoneServiec.add_New_Phone_Number(this.AddForm.value).subscribe(() => {
+    this.phoneServiec.add_New_Phone_Number(this.AddForm.value).subscribe((res) => {
 
-      this.router.navigate(['/'])
+      if(res["code"] == 402){
+        this.errroMessage = "Phone Number Exists"
+      }else{
+        this.router.navigate(['/'])
+      }
+      
     },
       err => {
-
+          console.log(err)
         if (err.error.error.statusCode == 500) {
       
           this.errroMessage = "Phone Number Exists"
